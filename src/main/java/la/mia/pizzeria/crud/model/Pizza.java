@@ -15,7 +15,9 @@ public class Pizza {
 	private String name;
 	private String description;
 	private String photo;
+//	CAMBIARE A BIGDECIMAL
 	private Double price;
+
 
 	public String getName() {
 		return name;

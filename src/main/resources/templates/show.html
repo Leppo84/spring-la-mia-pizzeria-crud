@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Menu</title>
+	<div th:replace="~{fragments :: head}"></div>
+</head>
+
+<body>
+	<header class="container-fluid mb3">
+	</header>
+	<main class="container">
+		<div class="row text-center">
+			<h1 class="">Scopri la pizza</h1>
+			<h3 th:text="${error}"></h3>
+		</div>
+		<div class="col-md-4">
+			<img th:src="${pizza.getPhoto()}" class="img-fluid" alt="...">
+		</div>
+		<div class="col-md-8">
+			<h5 class="">[[${pizza.name}]]</h5>
+			<p class="">[[${pizza.description}]]</p>
+			<p class="">[[${pizza.price}]] €</p>
+		</div>
+	</main>
+	<div th:replace="~{fragments :: script}"></div>
+</body>
+
+</html>
