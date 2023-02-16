@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+	<title>Create</title>
+	<th:block th:replace="~{fragments :: head}">
+		</th>
+</head>
+
+<body>
+	<header class="container-fluid mb3">
+					<div class="row text-center col-6">
+
+				<a th:href="@{/}" class="btn btn-light mt-5">torna alla home</a>
+			</div>
+		<div class="row text-center">
+			<h1 class="">Crea una nuova pizza</h1>
+			<h4 th:text="${error}" class="text-danger"></h4>
+		</div>
+	</header>
+	<main class="container">
+
+		<div class="row text-center">
+			<div class="col-md-auto">
+				<form id="pizzaForm" th:object="${pizza}" th:action="@{/create}" method="post">
+					<ul>
+						<li th:each="err : ${#fields.allErrors()}" th:text="${err}">
+						</li>
+					</ul>
+					<label for="search">Inserisci il nome:</label>
+					<input type="text" id="name" th:field="*{name}" />
+					<label for="search">Inserisci una descrizione:</label>
+					<input type="text" id="description" th:field="*{description}" />
+					<label for="search">Inserisci il prezzo:</label>
+					<input type="text" id="price" th:field="*{price}" />
+					<input type="text" class="d-none" id="photo"
+						value="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg"
+						th:field="*{Photo}" />
+					<button type="submit">Salva</button>
+				</form>
+			</div>
+		</div>
+	</main>
+	<div th:replace="~{fragments :: script}"></div>
+</body>
+
+</html>

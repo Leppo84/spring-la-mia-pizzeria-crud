@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="pizze")
@@ -12,10 +14,18 @@ public class Pizza {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotNull(message="Nome non valido!")
 	private String name;
+
+	@NotNull(message="Descrizione non valida!")
 	private String description;
+	
+	@NotNull(message="Foto non valida!")
 	private String photo;
-//	CAMBIARE A BIGDECIMAL
+	
+	@Min(0)
+	@NotNull(message="Prezzo non valido!")
 	private Double price;
 
 
