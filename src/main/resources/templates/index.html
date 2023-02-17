@@ -9,15 +9,17 @@
 
 <body>
 	<header class="container-fluid mb3">
-			<div class="row col-6">
-
-				<a th:href="@{/create}" class="btn btn-light mt-5">Crea la tua pizza</a>
-			</div>
-		<div class="row">
-			<form method="get" th:action="@{/}" class="col-6">
-				<label class="form-label" for="search">Filtra per nome:</label>
-				<input class="form-control"type="text" id="search" name="input" />
-				<button type="submit">Cerca</button>
+		<div class="row m-auto text-center">
+			<form method="get" th:action="@{/}" class=" col-11 row m-auto mt-3">
+				<label class="form-label text-start" for="search">Filtra per nome:</label>
+				<div class="col-7">
+					<input class="form-control" type="text" id="search" name="input" />
+				</div>
+				<button class="btn btn-primary col-2" type="submit">Cerca</button>
+				<div class="col-3">
+					<span>oppure -></span>
+					<a th:href="@{/create}" class="btn btn-secondary">Crea la tua pizza</a>
+				</div>
 			</form>
 		</div>
 	</header>
@@ -38,6 +40,8 @@
 								<th scope="col">Descrizione</th>
 								<th scope="col">Prezzo</th>
 								<th scope="col">Immagine</th>
+								<th scope="col">modifica</th>
+								<th scope="col">cancella</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,6 +54,17 @@
 								<td th:text="${pizza.description}" class="col-2"></td>
 								<td th:text="${pizza.price}" class="col-2"></td>
 								<td><img th:src="${pizza.getPhoto()}" class="col-5 img-fluid img-thumbnail"></td>
+								<td>
+									<a class="btn btn-primary" th:href="@{'/edit/{id}'(id=${pizza.id})}"><i
+											class="fa-regular fa-pen-to-square"></i></a>
+								</td>
+								<td>
+									<form action="#" th:action="@{'/delete/{id}'(id=${pizza.id})}" method="post">
+										<button class="btn btn-danger" type="submit" id="submitButton">
+											<i class="fas fa-trash-alt"></i>
+										</button>
+									</form>
+								</td>
 							</tr>
 						</tbody>
 					</table>

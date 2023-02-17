@@ -2,7 +2,7 @@
 <html xmlns="http://www.thymeleaf.org">
 
 <head>
-	<title>Crea nuova pizza</title>
+	<title>Modifica pizza</title>
 	<th:block th:replace="~{fragments :: head}">
 		</th>
 </head>
@@ -13,14 +13,14 @@
 			<a th:href="@{/}" class="btn btn-secondary my-3">torna alla home</a>
 		</div>
 		<div class="row text-center">
-			<h1 class="">Crea una nuova pizza</h1>
+			<h1 class="">Modifica i dati di una pizza</h1>
 			<h4 th:text="${error}" class="text-danger"></h4>
 		</div>
 	</header>
 	<main class="container">
-
 		<div class="row text-center">
-				<form class="col-12" id="pizzaForm" th:object="${pizza}" th:action="@{/create}" method="post">
+				<form class="col-12" id="pizzaForm" th:object="${pizza}" th:action="@{/edit/{id}(id=${pizza.id})}" method="post">
+					
 <!--					<ul>-->
 <!--						<li th:each="err : ${#fields.allErrors()}" th:text="${err}">-->
 <!--						</li>-->
@@ -40,7 +40,7 @@
 					</div>
 
 					<label for="price" class="form-label">Inserisci il prezzo:</label>
-					<input type="text" class="form-control" id="price" th:field="*{price}" th:errorClass="is-invalid">
+					<input  type="text" class="form-control" id="price" th:field="*{price}" th:errorClass="is-invalid">
 
 					<div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
 						<p th:each="err : ${#fields.errors('price')}" th:text="${err}"></p>

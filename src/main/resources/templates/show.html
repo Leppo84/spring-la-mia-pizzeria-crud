@@ -2,18 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Menu</title>
+	<title>Dettaglio Pizza</title>
 	<div th:replace="~{fragments :: head}"></div>
 </head>
 
 <body>
-	<header class="container-fluid mb3">
-	</header>
-	<main class="container">
+	<header class="container-fluid">
+		<div class="row col-6 m-auto">
+			<a th:href="@{/}" class="btn btn-secondary my-3">torna alla home</a>
+		</div>
 		<div class="row text-center">
 			<h1 class="">Scopri la pizza</h1>
-			<h3 th:text="${error}"></h3>
 		</div>
+	</header>
+	<main class="container">
 		<div class="col-md-4">
 			<img th:src="${pizza.getPhoto()}" class="img-fluid" alt="...">
 		</div>

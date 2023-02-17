@@ -9,5 +9,6 @@ import la.mia.pizzeria.crud.model.Pizza;
 public interface PizzaRepository extends JpaRepository<Pizza, Integer> {
 	
 	public List<Pizza> findByNameLike(String input);	
+//	public List<Pizza> findByName(String input);	
 
 }

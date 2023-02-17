@@ -33,13 +33,7 @@ public class PizzasController {
 	
 	@GetMapping
 	public String index(@RequestParam(name = "input", required = false) String input, Model model) {
-		List<Pizza> elencoPizze;
-
-////		TEST
-//		input = "marghe";
-////		TEST		
-//		http://localhost:8080/?input=mar
-		
+		List<Pizza> elencoPizze;	
 		if (input != null && !input.isEmpty()) {
 			elencoPizze = PizzaRepository.findByNameLike("%" + input + "%");
 		} else {
@@ -85,6 +79,41 @@ public class PizzasController {
 
 		return "show";
 
+	}
+	
+	@GetMapping("/edit/{id}")		//richieste GET del tipo /edit/xx
+	public String edit(@PathVariable("id") Integer id, Model model) {		
+		Pizza pizza=PizzaRepository.getReferenceById(id);  //lo recupero dal DB
+		
+		model.addAttribute("pizza", pizza);
+		return "/edit";
+	}
+	
+	@PostMapping("/edit/{id}")		//richieste POST del tipo /edit/n
+	public String update(
+			@Valid @ModelAttribute Pizza formPizza,
+			BindingResult bindingResult,
+			Model model) {
+		
+		if (bindingResult.hasErrors())
+			return "/edit";
+		
+//		if (PizzaRepository.findByName(formPizza.getName()).size()>0)
+//			System.out.println("Pizza già esistente");
+		else
+			PizzaRepository.save(formPizza);
+		
+		
+		
+		return "redirect:/";
+	}
+	
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Integer id) {
+	 
+	   PizzaRepository.deleteById(id);
+	   
+	   return "redirect:/";
 	}
 	
 }
